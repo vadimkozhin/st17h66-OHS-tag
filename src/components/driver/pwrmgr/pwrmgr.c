@@ -1,4 +1,4 @@
-﻿/**************************************************************************************************
+/**************************************************************************************************
 *******
 **************************************************************************************************/
 #include "rom_sym_def.h"
@@ -429,7 +429,7 @@ __ATTR_SECTION_SRAM__ void hal_pwrmgr_enter_sleep_rtc_reset(uint32_t sleepRtcTic
 #define STANDBY_WAIT_MS(a)  WaitRTCCount((a)<<5) // 32us * 32  around 1ms
 __attribute__((section("_section_standby_code_"))) pwroff_cfg_t s_pwroff_cfg[WAKEUP_PIN_MAX];
 __attribute__((section("_section_standby_code_"))) __attribute__((used)) uint8 pwroff_register_number=0;
-__attribute__((section("_section_standby_code_"))) void wakeupProcess_standby(void)
+void wakeupProcess_standby(void)
 {
     subWriteReg(0x4000f014,29,27,0x07);
     STANDBY_WAIT_MS(5);
@@ -486,7 +486,7 @@ __attribute__((section("_section_standby_code_"))) void wakeupProcess_standby(vo
 }
 extern void gpio_wakeup_set(gpio_pin_e pin, gpio_polarity_e type);
 extern void gpio_pull_set(gpio_pin_e pin, gpio_pupd_e type);
-__attribute__((section("_section_standby_code_"))) void hal_pwrmgr_enter_standby(pwroff_cfg_t* pcfg,uint8_t wakeup_pin_num)
+void hal_pwrmgr_enter_standby(pwroff_cfg_t* pcfg,uint8_t wakeup_pin_num)
 {
     HAL_ENTER_CRITICAL_SECTION();
     subWriteReg(0x4000f01c,6,6,0x00);   //disable software control

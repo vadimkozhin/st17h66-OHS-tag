@@ -415,6 +415,18 @@ static void hal_gpioin_event_pin(gpio_pin_e pin, gpio_polarity_e type)
 
 static void hal_gpioin_wakeup_trigger(gpio_pin_e pin)
 {
+//		#include "user_common.h"
+////		if(pin == PIN_UART1_WK)
+//	{
+//			uint16 cnt= 1000;
+//			while(cnt--){
+//				if(!hal_gpio_read(PIN_UART1_WK)){
+//					cnt =0;
+//					osal_start_timerEx(userUartTaskID, USER_UART_WAKEUP_EVT, 5);
+//				}					
+//			}				
+//		}
+	
     uint8_t pin_state = (uint8_t)hal_gpio_read(pin);
     gpio_polarity_e type = pin_state ? POL_RISING  : POL_FALLING;
 
