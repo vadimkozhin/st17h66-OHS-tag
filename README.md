@@ -10,7 +10,7 @@ The goal of this project is to make the tools and basic code example to build cu
 
 The project contains:
 
-- [x] [Arm Compiler v5 project](src) (win, need license)
+- [x] [Arm Compiler v6 project](src) (win, free for non-commercial use)
 - [x] [Lense flash tool LeKit](flash_tool) (win)
 - [x] [Lense SDK 3.1.1.2 with sample projects for st17h66](SDK) (win)
 - [x] [Flash instructions](flash_tool) (win)
@@ -18,5 +18,4 @@ The project contains:
 ##### TODO:
 
 - [ ] System independent flash tool
-- [ ] Arm Compiler v6 project (Windows, free for non-commercial use)
-- [ ] Arm GNU project
+- [ ] Port this project to Arm GNU toolchain
