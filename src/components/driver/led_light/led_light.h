@@ -45,7 +45,7 @@ typedef enum
     LIGHT_COLOR_WHITE,
     LIGHT_COLOR_NUM
 } light_color_t;
-extern light_blink_cfg_t s_lightBlink;
+static light_blink_cfg_t s_lightBlink;
 
 void light_timeout_handle(void);
 int light_ctrl(uint8_t ch, uint16_t value);

@@ -63,30 +63,35 @@ void _hard_fault(uint32_t* arg)
     while (1);
 }
 // *INDENT-OFF*
-__asm void hard_fault(void)
+void hard_fault(void)
 {
-    PRESERVE8
-    IMPORT  _hard_fault
-    ldr     r0, = 0x1FFF0400 /*store in global config 0x1fff0000 0x1fff0400*/
-    subs    r0, r0, #72
-    mov     r1, sp
-    str     r1, [r0]
-    adds    r0, #4
-    stmia   r0!, {r4 - r7}
-    mov     r4, r8
-    mov     r5, r9
-    mov     r6, r10
-    mov     r7, r11
-    stmia   r0!, {r4 - r7}
-    pop     {r4 - r5} /* pop rom Hardfault stack*/
-    pop     {r4 - r7} /* pop exception entry R0-R1*/
-    stmia   r0!, {r4 - r7}
-    pop     {r4 - r7}/* pop exception entry R12 LR PC xPSR*/
-    stmia   r0!, {r4 - r7}
-    subs    r0, r0, #68
-    ldr     r1, = _hard_fault
-    bx      r1
-    ALIGN   4
+// TODO: Fix asm errors
+	
+//    ASM 
+//	  (
+//	  "PRESERVE8"
+//    "IMPORT  _hard_fault"
+//    "ldr     r0, = 0x1FFF0400" /*store in global config 0x1fff0000 0x1fff0400*/
+//    "subs    r0, r0, #72"
+//    "mov     r1, sp"
+//    "str     r1, [r0]"
+//    "adds    r0, #4"
+//    "stmia   r0!, {r4 - r7}"
+//    "mov     r4, r8"
+//    "mov     r5, r9"
+//    "mov     r6, r10"
+//    "mov     r7, r11"
+//    "stmia   r0!, {r4 - r7}"
+//    "pop     {r4 - r5}" /* pop rom Hardfault stack*/
+//    "pop     {r4 - r7" /* pop exception entry R0-R1*/
+//    "stmia   r0!, {r4 - r7}"
+//    "pop     {r4 - r7}"/* pop exception entry R12 LR PC xPSR*/
+//    "stmia   r0!, {r4 - r7}"
+//    "subs    r0, r0, #68"
+//    "ldr     r1, = _hard_fault"
+//    "bx      r1"
+//    "ALIGN   4"
+//		);
 }
 // *INDENT-ON*
 
