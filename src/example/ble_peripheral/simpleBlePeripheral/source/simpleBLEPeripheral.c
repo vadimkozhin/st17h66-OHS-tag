@@ -114,6 +114,19 @@ static	gaprole_States_t	gapProfileState	=	GAPROLE_INIT;
 
 uint8	dev_mac_data[MAC_DATA_LEN]	=	{0x00,0x00,0x00,0x00,0x00,0x00};
 
+static uint8 scanRspData[] =
+{
+    0x1e, /* Length (30) */
+    0xff, /* Manufacturer Specific Data (type 0xff) */
+    0x4c, 0x00, /* Company ID (Apple) */
+    0x12, 0x19, /* Offline Finding type and length */
+    0x00, /* State */
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, /* First two bits */
+    0x00, /* Hint (0x00) */
+};
 
 /*********************************************************************
  * OHS mods
@@ -260,7 +273,7 @@ void SimpleBLEPeripheral_Init( uint8 task_id )
 			// Read from memory
 			LOG("dev_mac_data: 0x");
 			LOG_DUMP_BYTE(dev_mac_data, MAC_DATA_LEN);
-			//VOID osal_memcpy(scanRspData + RSP_OFFSET_MAC, dev_mac_data, MAC_DATA_LEN);
+			VOID osal_memcpy(scanRspData + RSP_OFFSET_MAC, dev_mac_data, MAC_DATA_LEN);
 			
 			// Action!
 			set_addr_from_key(dev_mac_data, public_key);
@@ -280,7 +293,7 @@ void SimpleBLEPeripheral_Init( uint8 task_id )
 			// Set the GAP Role Parameters
 			GAPRole_SetParameter( GAPROLE_ADVERT_ENABLED,				sizeof( uint8 ), &initial_advertising_enable );
 			GAPRole_SetParameter( GAPROLE_ADVERT_OFF_TIME,			sizeof( uint16 ), &gapRole_AdvertOffTime 	);
-			//GAPRole_SetParameter( GAPROLE_SCAN_RSP_DATA,				sizeof( scanRspData),	scanRspData	);
+			GAPRole_SetParameter( GAPROLE_SCAN_RSP_DATA,				sizeof( scanRspData),	scanRspData	);
 			GAPRole_SetParameter( GAPROLE_ADVERT_DATA,					sizeof( advertData ),	advertData	);
 			GAPRole_SetParameter( GAPROLE_PARAM_UPDATE_ENABLE,	sizeof( uint8  ),	&enable_update_request	);
 			GAPRole_SetParameter( GAPROLE_MIN_CONN_INTERVAL,		sizeof( uint16 ),	&desired_min_interval	);
