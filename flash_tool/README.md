@@ -8,6 +8,8 @@ This is a basic instruction for flashing st17h66 on Windows using Lense LeKit so
 
 For Serial adapter I use `FT232RL FTDI USB 3.3V 5.5V to TTL Serial Adapter Module`. The st17h66 based `Anti-lost Keychain Finder Device` sold on Aliexpress started from 1.50€. I bought [this](https://www.aliexpress.com/item/1005003357986346.html) item, but keep in mind that for this kind of devices sellers usually don't write what SoC inside, and there is no any guarantee that you'll get exactly an item with st17h66 inside.
 
+UPD: Confirmed, that [this](https://www.aliexpress.com/item/1005004495296995.html) item also works. It has an original airtag formfactor and should be compatible with airtag accesories. The board have pads for TX and RX pins, so soldering will be a bit easier.
+
 Lense provides a PDF (Chinese) with the flash instructions ([docs/ST17H66_flashing.pdf](../docs/ST17H66_flashing.pdf)) using their dev kit. From this doc we can figure out what pins are for `Tx` and `Rx` and how to use LeKit software. 
 
 ### The board connections
